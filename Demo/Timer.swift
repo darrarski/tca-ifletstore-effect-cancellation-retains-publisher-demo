@@ -9,7 +9,7 @@ struct TimerState: Equatable {
     var count: Int
 }
 
-enum TimerAction {
+enum TimerAction: Equatable {
     case start
     case stop
     case tick
