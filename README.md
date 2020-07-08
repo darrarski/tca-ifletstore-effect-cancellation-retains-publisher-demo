@@ -38,7 +38,7 @@ The problem occurs when using `IfLetStore` and cancellable `Effect`. It's 100% r
 
 ## Links
 
-- ...
+- [IfLetStore, Effect cancellation retains publisher - Related Projects / Swift Composable Architecture - Swift Forums](https://forums.swift.org/t/ifletstore-and-effect-cancellation-retains-publisher/38306)
 
 ## License
 
