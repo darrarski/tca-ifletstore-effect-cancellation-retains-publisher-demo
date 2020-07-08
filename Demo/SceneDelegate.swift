@@ -13,10 +13,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene = scene as? UIWindowScene else { return }
         window = UIWindow(windowScene: windowScene)
-        let view = TimerView(store: .init(
+        let view = AppView(store: .init(
             initialState: .init(),
-            reducer: timerReducer,
-            environment: TimerEnvironment(
+            reducer: appReducer,
+            environment: AppEnvironment(
                 mainQueue: AnyScheduler(DispatchQueue.main)
             )
         ))
