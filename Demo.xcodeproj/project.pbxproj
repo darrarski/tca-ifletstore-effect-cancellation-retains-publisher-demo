@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3122D68624B65FB800ECD7ED /* CustomTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3122D68524B65FB800ECD7ED /* CustomTimer.swift */; };
 		3136F93824B4D0D400A17C89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3136F93724B4D0D400A17C89 /* AppDelegate.swift */; };
 		3136F93A24B4D0D400A17C89 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3136F93924B4D0D400A17C89 /* SceneDelegate.swift */; };
 		3136F93C24B4D0D400A17C89 /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3136F93B24B4D0D400A17C89 /* Timer.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3122D68524B65FB800ECD7ED /* CustomTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTimer.swift; sourceTree = "<group>"; };
 		3136F93424B4D0D400A17C89 /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3136F93724B4D0D400A17C89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3136F93924B4D0D400A17C89 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +60,7 @@
 			children = (
 				3136F93724B4D0D400A17C89 /* AppDelegate.swift */,
 				3136F93D24B4D0D600A17C89 /* Assets.xcassets */,
+				3122D68524B65FB800ECD7ED /* CustomTimer.swift */,
 				3136F94524B4D0D600A17C89 /* Info.plist */,
 				3136F94224B4D0D600A17C89 /* LaunchScreen.storyboard */,
 				3136F93924B4D0D400A17C89 /* SceneDelegate.swift */,
@@ -142,6 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3122D68624B65FB800ECD7ED /* CustomTimer.swift in Sources */,
 				3136F93824B4D0D400A17C89 /* AppDelegate.swift in Sources */,
 				3136F93A24B4D0D400A17C89 /* SceneDelegate.swift in Sources */,
 				3136F93C24B4D0D400A17C89 /* Timer.swift in Sources */,
