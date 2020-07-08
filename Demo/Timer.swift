@@ -24,8 +24,10 @@ let timerReducer = Reducer<TimerState, TimerAction, TimerEnvironment> { state, a
 
     switch action {
     case .start:
-        return Effect.timer(id: TimerEffectId(), every: 1, tolerance: 0, on: environment.mainQueue)
+        return CustomTimerPublisher(scheduler: environment.mainQueue)
             .map { _ in TimerAction.tick }
+            .eraseToEffect()
+            .cancellable(id: TimerEffectId(), cancelInFlight: true)
 
     case .stop:
         return .cancel(id: TimerEffectId())
