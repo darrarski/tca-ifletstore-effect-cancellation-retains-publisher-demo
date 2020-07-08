@@ -14,20 +14,20 @@ Demo project. Reproduces an issue with retained publishes on effect cancellation
 
 ### Expected behavior
 
-7. Whenever the timer is started
+6. Whenever the timer is started
     1. A single instance of `CustomTimerPublisher` should be created
     2. A single instance of `CustomTimerSubscription` should be created
-8. Whenever the timer is stopped
+7. Whenever the timer is stopped
     1. The subscription should be canceled
     2. Previously created instance of `CustomTimerSubscription` should be disposed
     3. Previously created instance of `CustomTimerPublisher` should be disposed
 
 ### Actual behavior
 
-7. Whenever the timer is started
+6. Whenever the timer is started
     1. A single instance of `CustomTimerPublisher` is created ✅
     2. A single instance of `CustomTimerSubscription` is created ✅
-8. Whenever the timer is stopped
+7. Whenever the timer is stopped
     1. The subscription is canceled ✅
     2. Previously created instance of `CustomTimerSubscription` is disposed ✅
     3. Previously created instance of `CustomTimerPublisher` is retained in the memory ❌
