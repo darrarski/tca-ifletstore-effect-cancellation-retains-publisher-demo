@@ -1,6 +1,6 @@
-# TCA: `IfLetStore`, `Effect` cancellation retains publisher - demo
+# TCA: `Effect` cancellation retains publisher - demo
 
-Demo project. Reproduces an issue with retained publishes on effect cancellation when using `IfLetStore` from [The Composable Architecture](https://github.com/pointfreeco/swift-composable-architecture).
+Demo project. Reproduces an issue with retained publishes on effect cancellation when using [The Composable Architecture](https://github.com/pointfreeco/swift-composable-architecture).
 
 ## Issue
 
@@ -34,7 +34,9 @@ Demo project. Reproduces an issue with retained publishes on effect cancellation
 
 ## Details
 
-The problem occurs when using `IfLetStore` and cancellable `Effect`. It's 100% reproducible. When not using `IfLetStore`, the subscriptions are correctly canceled and publishers disposed from the memory.
+The problem occurs when returning cancellable `Effect` from a reducer, that was created using `Redcuer.combine` function. It's 100% reproducible. When not using `Reducer.combine`, the subscriptions are correctly canceled and publishers disposed from the memory.
+
+[Separate branch](https://github.com/darrarski/tca-ifletstore-effect-cancellation-retains-publisher-demo/tree/solution-without-combining-reducers) contains the same demo app but do not uses `Reducer.combine` function and it's free from retained publishers issue.
 
 ## Links
 
