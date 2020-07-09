@@ -23,7 +23,7 @@ extension AppEnvironment {
     }
 }
 
-let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
+let appReducer: Reducer<AppState, AppAction, AppEnvironment> = .combine(
     timerReducer.pullback(
         state: \.timer,
         action: /AppAction.timer,
