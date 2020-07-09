@@ -5,11 +5,9 @@ import CoreData
 private var CustomTimerPublisher_instanceCounter = 0
 private var CustomTimerSubscription_instanceCounter = 0
 
-final class CustomTimerPublisher<SchedulerType>: Publisher
-    where SchedulerType: Scheduler
-{
-    init(scheduler: SchedulerType) {
-        self.scheduler = scheduler
+final class CustomTimerPublisher: Publisher {
+
+    init() {
         CustomTimerPublisher_instanceCounter += 1
         Swift.print("^^^ CustomTimerPublisher.init (\(CustomTimerPublisher_instanceCounter))")
     }
@@ -19,8 +17,6 @@ final class CustomTimerPublisher<SchedulerType>: Publisher
         Swift.print("^^^ CustomTimerPublisher.deinit (\(CustomTimerPublisher_instanceCounter))")
     }
 
-    private let scheduler: SchedulerType
-
     // MARK: - Publisher
 
     typealias Output = Void
@@ -28,22 +24,19 @@ final class CustomTimerPublisher<SchedulerType>: Publisher
 
     func receive<S>(subscriber: S) where S: Subscriber, S.Failure == Failure, S.Input == Output {
         subscriber.receive(subscription: CustomTimerSubscription(
-            subscriber: subscriber,
-            scheduler: scheduler
+            subscriber: subscriber
         ))
     }
 
 }
 
-final class CustomTimerSubscription<SubscriberType, SchedulerType>: Subscription
+final class CustomTimerSubscription<SubscriberType>: Subscription
     where SubscriberType: Subscriber,
     SubscriberType.Input == Void,
-    SubscriberType.Failure == Never,
-    SchedulerType: Scheduler
+    SubscriberType.Failure == Never
 {
-    init(subscriber: SubscriberType, scheduler: SchedulerType) {
+    init(subscriber: SubscriberType) {
         self.subscriber = subscriber
-        self.scheduler = scheduler
         CustomTimerSubscription_instanceCounter += 1
         Swift.print("^^^ CustomTimerSubscription.init (\(CustomTimerSubscription_instanceCounter))")
     }
@@ -54,26 +47,24 @@ final class CustomTimerSubscription<SubscriberType, SchedulerType>: Subscription
     }
 
     private let subscriber: SubscriberType
-    private let scheduler: SchedulerType
-    private var cancellables = Set<AnyCancellable>()
+    private var timer: Timer?
 
     // MARK: - Subscription
 
     func request(_ demand: Subscribers.Demand) {
-        guard demand > 0, cancellables.isEmpty else { return }
+        guard demand > 0, timer == nil else { return }
 
-        Effect.timer(id: "", every: 1, tolerance: 0, on: scheduler)
-            .sink(receiveValue: { [weak self] _ in
-                _ = self?.subscriber.receive(())
-            })
-            .store(in: &cancellables)
+        timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            _ = self?.subscriber.receive(())
+        }
     }
 
     // MARK: - Cancellable
 
     func cancel() {
         Swift.print("^^^ CustomTimerSubscription.cancel")
-        cancellables.removeAll()
+        timer?.invalidate()
+        timer = nil
     }
 
 }

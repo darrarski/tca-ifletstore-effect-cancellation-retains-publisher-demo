@@ -24,7 +24,7 @@ let timerReducer = Reducer<TimerState, TimerAction, TimerEnvironment> { state, a
 
     switch action {
     case .start:
-        return CustomTimerPublisher(scheduler: environment.mainQueue)
+        return CustomTimerPublisher()
             .map { _ in TimerAction.tick }
             .eraseToEffect()
             .cancellable(id: TimerEffectId(), cancelInFlight: true)
