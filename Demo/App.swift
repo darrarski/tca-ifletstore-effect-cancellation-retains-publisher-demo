@@ -2,11 +2,11 @@ import ComposableArchitecture
 import SwiftUI
 
 struct AppState: Equatable {
-    init(timer: TimerState? = .init()) {
+    init(timer: TimerState = .init()) {
         self.timer = timer
     }
 
-    var timer: TimerState?
+    var timer: TimerState
 }
 
 enum AppAction: Equatable {
@@ -24,7 +24,7 @@ extension AppEnvironment {
 }
 
 let appReducer = Reducer<AppState, AppAction, AppEnvironment>.combine(
-    timerReducer.optional.pullback(
+    timerReducer.pullback(
         state: \.timer,
         action: /AppAction.timer,
         environment: \.timerEnvironment
@@ -36,12 +36,10 @@ struct AppView: View {
 
     var body: some View {
         WithViewStore(store) { viewStore in
-            IfLetStore(self.store.scope(
+            TimerView(store: self.store.scope(
                 state: \.timer,
                 action: AppAction.timer
-            )) { timerStore in
-                TimerView(store: timerStore)
-            }
+            ))
         }
     }
 }
