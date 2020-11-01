@@ -2,6 +2,8 @@
 
 Demo project. Reproduces an issue with retained publishes on effect cancellation when using [The Composable Architecture](https://github.com/pointfreeco/swift-composable-architecture).
 
+#### 🚨 [November 1st 2020] This issue seems to be resolved when using Xcode 12.1 (12A7403) with Apple Swift version 5.3 (swiftlang-1200.0.29.2 clang-1200.0.30.1). It looks like the problem was caused by a bug in Combine framework.
+
 ## Issue
 
 ### Steps to reproduce
